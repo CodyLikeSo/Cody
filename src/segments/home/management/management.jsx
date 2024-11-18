@@ -1,0 +1,35 @@
+import React from "react";
+import { useNavigate } from "react-router-dom"; // Импортируем useNavigate
+import Transition from "../../../navigation/transition";
+import GanttChart from "./gantt_chart";
+
+function Management() {
+  const navigate = useNavigate(); // Создаем экземпляр navigate
+
+  return (
+    <div style={{ position: 'relative', height: '100vh' }}>
+      <GanttChart />
+      <div
+        className="fixed inset-0" // Changed from absolute to fixed
+        style={{
+          backgroundImage: `url('src/assets/lines.png')`,
+          backgroundSize: '200%', // Установить на 200%, чтобы сделать в 2 раза больше
+          backgroundPosition: 'center 33%',
+          backgroundRepeat: 'no-repeat',
+          filter: 'blur(10px)',
+          zIndex: -1 // Убедитесь, что фоновый элемент находится под другими элементами
+        }}
+      ></div>
+
+      {/* Кнопка для перехода на главную страницу */}
+      <button
+        className="fixed bottom-5 right-5 px-5 py-2 bg-[#1a1a1a] text-white rounded-[12px] transition-colors duration-700 ease-in-out hover:bg-green-700 "
+        onClick={() => navigate('/')} // Навигация на главную страницу
+      >
+        Main
+      </button>
+    </div>
+  );
+}
+
+export default Transition(Management);
